@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import Persons from '../components/Persons/Persons';
 import Cockpit from '../components/Cockpit/Cockpit';
 import styles from './App.module.css';
+import WithClass from '../hoc/WithClass';
 
 class App extends Component {
   constructor(props) {
@@ -11,8 +12,8 @@ class App extends Component {
   state = {
     persons: [
       { id: 'aoisdh', name: 'Max', age: 28 },
-      { id: 'aajhsbd', name: 'Manu', age: 29 },
-      { id: 'aslopdja', name: 'Steph', age: 26 }
+      { id: 'aajhsbd', name: 'Manuela', age: 29 },
+      { id: 'aslopdja', name: 'Stephanie', age: 26 }
     ],
     otherState: 'some other value',
     showPersons: false,
@@ -90,15 +91,15 @@ class App extends Component {
         <Cockpit
           title={this.props.appTitle}
           showPersons={this.state.showPersons}
-          persons={this.state.persons}
+          personsLength={this.state.persons.length}
           clicked={this.togglePersonsHandler}
         />
       );
     }
 
     return (
-      <div className={styles.App}>
-        <button onClick={this.toggleCockpit}>Remove Cockpit</button>
+      <WithClass classes={styles.App}>
+        <button onClick={this.toggleCockpit}>Toggle Cockpit</button>
         {cockpit}
         {/* <Cockpit
           title={this.props.appTitle}
@@ -107,7 +108,7 @@ class App extends Component {
           clicked={this.togglePersonsHandler}
         /> */}
         {persons}
-      </div>
+      </WithClass>
     );
   }
 }
