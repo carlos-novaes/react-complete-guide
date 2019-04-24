@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import Persons from '../components/Persons/Persons';
 import Cockpit from '../components/Cockpit/Cockpit';
 import styles from './App.module.css';
+import Auxiliar from '../hoc/Auxiliar';
 import WithClass from '../hoc/WithClass';
 
 class App extends Component {
@@ -17,7 +18,8 @@ class App extends Component {
     ],
     otherState: 'some other value',
     showPersons: false,
-    showCockpit: true
+    showCockpit: true,
+    changeCounter: 0
   };
 
   static getDerivedStateFromProps(props, state) {
@@ -52,7 +54,12 @@ class App extends Component {
     const persons = [...this.state.persons];
     persons[personIndex] = person;
 
-    this.setState({ persons: persons });
+    this.setState((prevState, props) => {
+      return {
+        persons: persons,
+        changeCounter: prevState.changeCounter + 2
+      };
+    });
   };
 
   deletePersonHandler = personIndex => {
@@ -98,7 +105,7 @@ class App extends Component {
     }
 
     return (
-      <WithClass classes={styles.App}>
+      <Auxiliar>
         <button onClick={this.toggleCockpit}>Toggle Cockpit</button>
         {cockpit}
         {/* <Cockpit
@@ -108,9 +115,9 @@ class App extends Component {
           clicked={this.togglePersonsHandler}
         /> */}
         {persons}
-      </WithClass>
+      </Auxiliar>
     );
   }
 }
 
-export default App;
+export default WithClass(App, styles.App);
