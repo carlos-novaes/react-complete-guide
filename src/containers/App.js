@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import Persons from '../components/Persons/Persons';
 import Cockpit from '../components/Cockpit/Cockpit';
 import styles from './App.module.css';
@@ -120,4 +121,7 @@ class App extends Component {
   }
 }
 
+App.propTypes = {
+  appName: PropTypes.string
+};
 export default WithClass(App, styles.App);
