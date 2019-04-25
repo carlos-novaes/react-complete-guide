@@ -23,7 +23,7 @@ class Person extends Component {
       <Auxiliar classes={styles.Person}>
         <AuthContext.Consumer>
           {context =>
-            context.authenticated ? <p>Authenticated</p> : <p>Please log in</p>
+            context.authenticated ? <p>Authenticated!</p> : <p>Please log in</p>
           }
         </AuthContext.Consumer>
 
