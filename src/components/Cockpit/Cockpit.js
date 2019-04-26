@@ -49,9 +49,11 @@ const Cockpit = props => {
       <button ref={toggleBtnRef} className={btnClass} onClick={props.clicked}>
         Toggle Names
       </button>
-      <button onClick={authContext.login}>
-        {authContext.authenticated ? <p>Log out</p> : <p>Log in</p>}
-      </button>
+      {authContext.authenticated ? (
+        <button onClick={authContext.login}>Log out</button>
+      ) : (
+        <button onClick={authContext.login}>Log in</button>
+      )}
     </div>
   );
 };
